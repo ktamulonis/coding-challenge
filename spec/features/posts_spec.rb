@@ -11,6 +11,12 @@ RSpec.feature "Posts", type: :feature do
   end
 
   describe 'viewing all posts' do 
+
+    it 'directs all visitors to site to posts path' do 
+      visit root_path
+      expect( page.body ).to include('Hello World')
+    end
+
   	it 'lists all posts' do
   	  visit posts_path
   	  expect( page.body ).to include('Career Plug')
@@ -50,7 +56,20 @@ RSpec.feature "Posts", type: :feature do
 
   describe 'deleting a post' do 
 
-    it 'can be deleted from index page'
+    it 'can be deleted from index page' do 
+      visit posts_path
+      expect( page.body ).to include('Hello World')
+
+      within '#post-card-1' do 
+        page.accept_confirm do
+          click_link 'Destroy'
+        end
+      end
+
+      expect( page.body ).to_not include('Hello World')
+
+    end
+
 
   	it 'can be deleted from show page'
 
