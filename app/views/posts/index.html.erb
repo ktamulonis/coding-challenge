@@ -1,1 +1,12 @@
 <!-- View for showing all `Post` -->
+<h1>Career Plug</h1>
+
+
+<%= link_to 'New Post', new_post_path %>
+
+<% @posts.each do |post| %>
+<div class="post-card" id="post-card-#{post.id}">
+  <%= link_to post.title, post %>
+  <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+<% end %>

@@ -1,2 +1,7 @@
 <!-- View for creating a new `Post` -->
 <!-- See http://guides.rubyonrails.org/form_helpers.html#dealing-with-basic-forms for more information -->
+<h1>New Post Form</h1>
+
+<%= render 'form', post: @post %>
+
+<%= link_to 'Back', posts_path %>
