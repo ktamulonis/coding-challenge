@@ -49,9 +49,9 @@ RSpec.feature "Posts", type: :feature do
   	  visit new_post_path
   	  expect( page.body ).to include('New Post')
   	  within 'form' do
-          fill_in 'post[title]', with: 'Hey Sup from the Sunshine state!'
-          fill_in 'post[body]', with: 'Now on a serious note this post is going to address...'
-        end
+        fill_in 'post[title]', with: 'Hey Sup from the Sunshine state!'
+        fill_in 'post[body]', with: 'Now on a serious note this post is going to address...'
+      end
 
       click_button "Create Post"
       expect( page.body ).to include('Hey Sup from the Sunshine state!')

@@ -15,6 +15,9 @@
 <div class="post-card" id="post-card-<%= post.id %>"  >
   <%= link_to post.title, post %>
   <%= post.body.truncate(30)%>
+  <% if post.comments.any? %>
+    <%= link_to "#{post.comments.count} Comments" , post %>
+  <% end %>
   <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 <% end %>
