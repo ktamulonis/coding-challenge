@@ -70,12 +70,36 @@ RSpec.feature "Posts", type: :feature do
   end
 
   describe 'editing a comment' do 
-  	it 'has an edit button next to the comment'
+  	it 'has an edit button next to the comment' do 
+      visit post_path(Post.first)
+      
+      click_link "Edit Comment"
+      within 'form' do
+        fill_in 'comment[body]', with: 'Hey, Thought I would edit this comment'
+        click_button "Update Comment"
+
+      end
+      visit post_path(Post.first)
+      expect(page.body).to include('Hey, Thought I would edit this comment')
+
+
+    end
 
   end
 
   describe 'destroying a comment' do 
-  	it 'has a delete button next to the comment'
+  	it 'has a delete button next to the comment' do
+      visit post_path(Post.first)
+      expect(Post.first.comments.count).to eq(1)
+        within '#comment-1' do 
+          page.accept_confirm do
+            click_link 'Destroy'
+        end
+      end
+      
+      visit post_path(Post.first)
+      expect(Post.first.comments.count).to eq(0)
+    end
 
   end
 

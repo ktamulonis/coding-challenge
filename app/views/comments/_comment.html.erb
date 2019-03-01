@@ -1,1 +1,5 @@
-<p> <%= comment.body %> -- <%= comment.created_at.to_s(:long) %> </p>
+<div id="comment-<%=comment.id%>">
+  <p> <%= comment.body %> -- <%= comment.created_at.to_s(:long) %>  </p>
+  <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment) %>
+  <%= link_to 'Destroy', [@post,comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
