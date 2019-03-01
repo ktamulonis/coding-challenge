@@ -4,9 +4,17 @@
 
 <%= link_to 'New Post', new_post_path %>
 
+<div class="search_posts">
+  <%= form_tag(root_path, method: :get) do %>
+    <%= text_field_tag :term, params[:term], placeholder: "Search Posts" %>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+</div>
+
 <% @posts.each do |post| %>
 <div class="post-card" id="post-card-<%= post.id %>"  >
   <%= link_to post.title, post %>
+  <%= post.body.truncate(30)%>
   <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 <% end %>

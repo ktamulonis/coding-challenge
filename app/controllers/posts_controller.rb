@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy]
 
   def index
-    @posts = Post.all
+    if params[:term].present?
+      @posts = Post.search(params[:term])
+    else      
+      @posts = Post.all
+    end
   end
 
   # GET /posts/new
